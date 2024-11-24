@@ -1,7 +1,22 @@
 version: "3.8"
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=3030
+      - ETHEREUM_RPC_URL=${ETHEREUM_RPC_URL}
+      - ETHEREUM_CONTRACT_ADDRESS=${ETHEREUM_CONTRACT_ADDRESS}
+      - ETHEREUM_PRIVATE_KEY=${ETHEREUM_PRIVATE_KEY}
+    ports:
+      - '${PORT}:${PORT}'  # Use port from .env
+    depends_on:
+      - mongodb
+
   mongodb:
-    image: mongo:7.4.1
+    image: mongo:7.0
     container_name: mongodb
     ports:
       - "27017:27017"

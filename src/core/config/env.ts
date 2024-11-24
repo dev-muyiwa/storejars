@@ -19,13 +19,6 @@ class EthereumConfig {
 }
 
 export class EnvConfig {
-  @IsString()
-  @IsIn(['local', 'development', 'production', 'test'])
-  node_env: 'local' | 'development' | 'production' | 'test';
-
-  @IsString()
-  app_name: string;
-
   @Type(() => Number)
   @IsNumber()
   port: number;

@@ -32,8 +32,6 @@ export class GraphQLExceptionFilter implements GqlExceptionFilter {
       }
     }
 
-    console.log('exception', exception);
-
     throw new GraphQLError(message, {
       extensions: {
         code: this.mapHttpStatusToCode(status),

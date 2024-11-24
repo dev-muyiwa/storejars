@@ -13,13 +13,14 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { Web3Module } from './web3/web3.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
-      envFilePath: ['.env',],
+      envFilePath: ['.env'],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       allowBatchedHttpRequests: true,
@@ -45,6 +46,7 @@ import { Web3Module } from './web3/web3.module';
     UsersModule,
     Web3Module,
   ],
+  controllers: [AppController],
   providers: [
     AppService,
     AppResolver,

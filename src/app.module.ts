@@ -4,8 +4,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { join } from 'path';
-import { GraphQLExceptionFilter } from './core/utils/exception.filter';
-import { APP_FILTER } from '@nestjs/core';
 import { AppResolver } from './app.resolver';
 import helmet from 'helmet';
 import configuration from './core/config/configuration';
@@ -13,7 +11,6 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { Web3Module } from './web3/web3.module';
-import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -46,12 +43,7 @@ import { AppController } from './app.controller';
     UsersModule,
     Web3Module,
   ],
-  controllers: [AppController],
-  providers: [
-    AppService,
-    AppResolver,
-    { provide: APP_FILTER, useClass: GraphQLExceptionFilter },
-  ],
+  providers: [AppService, AppResolver],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

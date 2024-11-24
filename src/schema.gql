@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Counter {
+  count: String!
+}
+
 input CreateUserInput {
   bio: String
   firstName: String!
@@ -15,6 +19,7 @@ scalar DateTime
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  incrementCounter: TransactionResponse!
 }
 
 type PaginatedUsersResult {
@@ -30,8 +35,13 @@ input PaginationDto {
 }
 
 type Query {
+  getCounterValue: Counter!
   getHello: String!
   getUsers(paginationInput: PaginationDto!): PaginatedUsersResult!
+}
+
+type TransactionResponse {
+  hash: String!
 }
 
 type User {

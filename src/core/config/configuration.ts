@@ -9,6 +9,11 @@ export default (): EnvConfig => {
     node_env: process.env.NODE_ENV,
     port: process.env.PORT,
     mongo_uri: process.env.MONGO_URI,
+    ethereum: {
+      rpc_url: process.env.ETHEREUM_RPC_URL,
+      private_key: process.env.ETHEREUM_PRIVATE_KEY,
+      contract_address: process.env.ETHEREUM_CONTRACT_ADDRESS,
+    }
   };
 
   const configInstance = plainToInstance(EnvConfig, config);

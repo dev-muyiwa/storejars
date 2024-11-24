@@ -12,6 +12,7 @@ import configuration from './core/config/configuration';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
+import { Web3Module } from './web3/web3.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { DatabaseModule } from './database/database.module';
     }),
     DatabaseModule,
     UsersModule,
+    Web3Module,
   ],
   providers: [
     AppService,

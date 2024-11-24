@@ -10,13 +10,15 @@ import { AppResolver } from './app.resolver';
 import helmet from 'helmet';
 import configuration from './core/config/configuration';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
-      envFilePath: ['.env', '.env.development'],
+      envFilePath: ['.env',],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       allowBatchedHttpRequests: true,
@@ -38,6 +40,8 @@ import { ConfigModule } from '@nestjs/config';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       sortSchema: true,
     }),
+    DatabaseModule,
+    UsersModule,
   ],
   providers: [
     AppService,
